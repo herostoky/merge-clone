@@ -1,0 +1,248 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="700"
+        x:Class="MergeClone.MainWindow"
+        Title="MergeClone"
+        Background="#2D2D2D"
+        MinWidth="1000" MinHeight="600">
+
+  <Window.Styles>
+    <Style Selector="TextBlock">
+      <Setter Property="Foreground" Value="#E0E0E0"/>
+    </Style>
+    <Style Selector="Button">
+      <Setter Property="Background" Value="#3A3A3A"/>
+      <Setter Property="Foreground" Value="#E0E0E0"/>
+      <Setter Property="Padding" Value="8 4"/>
+      <Setter Property="CornerRadius" Value="3"/>
+    </Style>
+    <Style Selector="ListBox">
+      <Setter Property="Background" Value="#252525"/>
+      <Setter Property="Foreground" Value="#E0E0E0"/>
+    </Style>
+    <Style Selector="ListBoxItem">
+      <Setter Property="Padding" Value="5"/>
+    </Style>
+    <Style Selector="GridSplitter">
+      <Setter Property="Background" Value="#3A3A3A"/>
+      <Setter Property="Width" Value="4"/>
+    </Style>
+  </Window.Styles>
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="250" MinWidth="150"/>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="350" MinWidth="200"/>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="*" MinWidth="300"/>
+    </Grid.ColumnDefinitions>
+
+    <!-- Left Column - Repository/Branch Navigation -->
+    <Grid Grid.Column="0" Background="#252525" RowDefinitions="Auto,*,Auto">
+
+        <StackPanel Grid.Row="0" Margin="10">
+        <TextBlock Text="REPOSITORIES" FontSize="12" Margin="0 0 0 5" Foreground="#888888"/>
+        <ComboBox Width="230" HorizontalAlignment="Left" Margin="0 5">
+          <ComboBoxItem Content="MergeClone Repository"/>
+        </ComboBox>
+      </StackPanel>
+
+      <TabControl Grid.Row="1" Margin="0" Padding="0" Background="Transparent">
+        <TabItem Header="BRANCHES">
+          <ListBox>
+            <ListBoxItem>
+              <StackPanel Orientation="Horizontal">
+                <Ellipse Width="10" Height="10" Fill="#569CD6" Margin="0 0 5 0"/>
+                <TextBlock Text="main"/>
+              </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem>
+              <StackPanel Orientation="Horizontal">
+                <Ellipse Width="10" Height="10" Fill="#B5CEA8" Margin="0 0 5 0"/>
+                <TextBlock Text="develop"/>
+              </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem>
+              <StackPanel Orientation="Horizontal">
+                <Ellipse Width="10" Height="10" Fill="#D69D85" Margin="0 0 5 0"/>
+                <TextBlock Text="feature/new-ui"/>
+              </StackPanel>
+            </ListBoxItem>
+          </ListBox>
+        </TabItem>
+        <TabItem Header="REMOTES">
+          <ListBox>
+            <ListBoxItem>
+              <TextBlock Text="origin/main"/>
+            </ListBoxItem>
+            <ListBoxItem>
+              <TextBlock Text="origin/develop"/>
+            </ListBoxItem>
+          </ListBox>
+        </TabItem>
+        <TabItem Header="TAGS">
+          <ListBox>
+            <ListBoxItem>
+              <TextBlock Text="v1.0.0"/>
+            </ListBoxItem>
+            <ListBoxItem>
+              <TextBlock Text="v0.9.0"/>
+            </ListBoxItem>
+          </ListBox>
+        </TabItem>
+      </TabControl>
+
+      <StackPanel Grid.Row="2" Margin="10 5">
+        <Button Content="Pull" Width="100" HorizontalAlignment="Left" Margin="0 2"/>
+        <Button Content="Push" Width="100" HorizontalAlignment="Left" Margin="0 2"/>
+      </StackPanel>
+    </Grid>
+
+    <!-- Grid Splitter between Left and Middle Column -->
+    <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+    <!-- Middle Column - Commit List/History -->
+    <Grid Grid.Column="2" Background="#252525" RowDefinitions="Auto,*">
+
+        <StackPanel Grid.Row="0" Margin="10 10 10 0">
+        <TextBlock Text="COMMITS" FontSize="12" Margin="0 0 0 5" Foreground="#888888"/>
+        <TextBox Watermark="Filter commits..." Margin="0 5"/>
+      </StackPanel>
+
+      <ListBox Grid.Row="1" Margin="0 10">
+        <ListBoxItem>
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+              <Ellipse Width="10" Height="10" Fill="#569CD6" Margin="0 0 5 0"/>
+              <TextBlock Text="Implement new UI components" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Margin="15 2 0 0">
+              <TextBlock Text="John Doe • 5 hours ago" Foreground="#888888" FontSize="11"/>
+            </StackPanel>
+          </Grid>
+        </ListBoxItem>
+        <ListBoxItem>
+          <Grid RowDefinitions="Auto,Auto">
+              <StackPanel Grid.Row="0" Orientation="Horizontal">
+              <Ellipse Width="10" Height="10" Fill="#B5CEA8" Margin="0 0 5 0"/>
+              <TextBlock Text="Fix layout issues in main window" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Margin="15 2 0 0">
+              <TextBlock Text="Jane Smith • 2 days ago" Foreground="#888888" FontSize="11"/>
+            </StackPanel>
+          </Grid>
+        </ListBoxItem>
+        <ListBoxItem>
+          <Grid RowDefinitions="Auto,Auto">
+              <StackPanel Grid.Row="0" Orientation="Horizontal">
+              <Ellipse Width="10" Height="10" Fill="#D69D85" Margin="0 0 5 0"/>
+              <TextBlock Text="Update dependencies" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Margin="15 2 0 0">
+              <TextBlock Text="Mike Johnson • 1 week ago" Foreground="#888888" FontSize="11"/>
+            </StackPanel>
+          </Grid>
+        </ListBoxItem>
+      </ListBox>
+    </Grid>
+
+    <!-- Grid Splitter between Middle and Right Column -->
+    <GridSplitter Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+    <!-- Right Column - File Changes/Diff View -->
+    <Grid Grid.Column="4" Background="#252525" RowDefinitions="Auto,Auto,*">
+
+        <StackPanel Grid.Row="0" Margin="10">
+        <TextBlock Text="CHANGES" FontSize="12" Margin="0 0 0 5" Foreground="#888888"/>
+        <TextBlock Text="Implement new UI components" FontWeight="Bold" Margin="0 5"/>
+        <TextBlock Text="John Doe • 5 hours ago • ab34ef2" Foreground="#888888" FontSize="11" Margin="0 2"/>
+      </StackPanel>
+
+      <Grid Grid.Row="1" Margin="10 5" ColumnDefinitions="*,Auto">
+          <TextBox Watermark="Filter files..." Grid.Column="0"/>
+        <Button Content="Stage All" Grid.Column="1" Margin="5 0 0 0"/>
+      </Grid>
+
+      <TabControl Grid.Row="2" Margin="0" Padding="0" Background="Transparent">
+        <TabItem Header="CHANGED FILES">
+          <Grid RowDefinitions="Auto,*">
+
+              <ListBox Grid.Row="0">
+              <ListBoxItem>
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="M" Foreground="#569CD6" FontWeight="Bold" Margin="0 0 5 0"/>
+                  <TextBlock Text="MainWindow.axaml"/>
+                </StackPanel>
+              </ListBoxItem>
+              <ListBoxItem>
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="M" Foreground="#569CD6" FontWeight="Bold" Margin="0 0 5 0"/>
+                  <TextBlock Text="MainWindow.axaml.cs"/>
+                </StackPanel>
+              </ListBoxItem>
+              <ListBoxItem>
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="A" Foreground="#B5CEA8" FontWeight="Bold" Margin="0 0 5 0"/>
+                  <TextBlock Text="Models/Repository.cs"/>
+                </StackPanel>
+              </ListBoxItem>
+            </ListBox>
+
+            <Border Grid.Row="1" Background="#1E1E1E" Margin="0 10" Padding="5" BorderBrush="#3A3A3A" BorderThickness="1">
+              <Grid RowDefinitions="Auto,*">
+
+                  <TextBlock Grid.Row="0" Text="MainWindow.axaml" Margin="5" FontWeight="Bold"/>
+
+                <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto">
+                  <StackPanel>
+                    <StackPanel Orientation="Horizontal" Background="#2D2D2D">
+                      <TextBlock Text="@@ -1,10 +1,30 @@" Foreground="#569CD6" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                      <TextBlock Width="30" Text=" 1" Foreground="#888888" TextAlignment="Right" Margin="0 0 5 0"/>
+                      <TextBlock Text="&lt;Window xmlns=&quot;https://github.com/avaloniaui&quot;" Foreground="#E0E0E0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                      <TextBlock Width="30" Text=" 2" Foreground="#888888" TextAlignment="Right" Margin="0 0 5 0"/>
+                      <TextBlock Text="        xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;" Foreground="#E0E0E0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                      <TextBlock Width="30" Text=" 3" Foreground="#888888" TextAlignment="Right" Margin="0 0 5 0"/>
+                      <TextBlock Text="        xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/2008&quot;" Foreground="#E0E0E0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Background="#1E3425">
+                      <TextBlock Width="30" Text="-4" Foreground="#888888" TextAlignment="Right" Margin="0 0 5 0"/>
+                      <TextBlock Text="        Title=&quot;MergeClone&quot;>" Foreground="#F14C4C"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Background="#25293E">
+                      <TextBlock Width="30" Text="+4" Foreground="#888888" TextAlignment="Right" Margin="0 0 5 0"/>
+                      <TextBlock Text="        Title=&quot;MergeClone&quot;" Foreground="#4FC1FF"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Background="#25293E">
+                      <TextBlock Width="30" Text="+5" Foreground="#888888" TextAlignment="Right" Margin="0 0 5 0"/>
+                      <TextBlock Text="        Background=&quot;#2D2D2D&quot;" Foreground="#4FC1FF"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Background="#25293E">
+                      <TextBlock Width="30" Text="+6" Foreground="#888888" TextAlignment="Right" Margin="0 0 5 0"/>
+                      <TextBlock Text="        MinWidth=&quot;1000&quot; MinHeight=&quot;600&quot;>" Foreground="#4FC1FF"/>
+                    </StackPanel>
+                  </StackPanel>
+                </ScrollViewer>
+              </Grid>
+            </Border>
+          </Grid>
+        </TabItem>
+        <TabItem Header="STAGED FILES">
+          <TextBlock Text="No staged files" Margin="10" Foreground="#888888"/>
+        </TabItem>
+      </TabControl>
+    </Grid>
+  </Grid>
+</Window>
